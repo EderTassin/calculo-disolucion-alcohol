@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <title>Calculadora de dilución de alcohol</title>
+
+
+
+    <style>
+        body {
+            margin-top: 2rem;
+            margin-left: 2rem;
+        }
+
+        .resultado {
+            font-size: larger;
+            font-weight: 500;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="d-flex justify-content-center">
+        <h1>Calculadora de dilución de alcohol</h1>
+    </div>
+    <div class="d-flex justify-content-center">
+        <h3 class="ml-2">AN = VA * (GA – GAD) / GAD</h3>
+    </div>
+
+    <form class="d-flex justify-content-center">
+        <ol>
+
+            <li><strong>AN</strong>&nbsp;&nbsp;&nbsp; = Cantidad de agua necesaria (en litros)</li>
+            <li><strong>VA</strong>&nbsp;&nbsp;&nbsp; = Volumen de alcohol disponible (en litros)</li>
+            <li><strong>GA</strong>&nbsp;&nbsp;&nbsp; = Graduación alcohólica del volumen de alcohol disponible (en %)
+            </li>
+            <li><strong>GAD</strong> = Graduación alcohólica deseada (en %)</li>
+        </ol>
+    </form>
+
+    <div class="form d-flex justify-content-center">
+        <form>
+            <label for="cantidad-solucion">Cantidad de solución (en mililitros):</label><br>
+            <input type="number" id="cantidad-solucion" name="cantidad-solucion"><br>
+            <br>
+            <label for="graduacion-inicial">Graduación inicial (%):</label><br>
+            <input type="number" id="graduacion-inicial" name="graduacion-inicial"><br>
+            <br>
+            <label for="graduacion-final">Graduación final (%):</label><br>
+            <input type="number" id="graduacion-final" name="graduacion-final"><br>
+            <br>
+            <button class="btn btn-primary ml-lg-5" type="button" onclick="calcular()">Calcular</button>
+        </form>
+    </div>
+    <br> 
+    <div class="d-flex justify-content-center" >
+        <div id="resultado" class="resultado"></div>
+    </div>
+    <div id="result-invalid" class="d-flex justify-content-center " style="margin-left:-50px;"></div>
+
+
+
+
+    <script>
+        function calcular() {
+
+            var resultadoDiv = document.getElementById("resultado");
+            var resultInvalid = document.getElementById("result-invalid");
+            var cantidadSolucion = document.getElementById("cantidad-solucion").value;
+            var graduacionInicial = document.getElementById("graduacion-inicial").value;
+            var graduacionFinal = document.getElementById("graduacion-final").value;
+
+            resultadoDiv.innerHTML = "";
+
+            if (cantidadSolucion.length == 0 || graduacionInicial.length == 0 || graduacionFinal.length == 0) {
+
+                resultInvalid.innerHTML = "<div class='alert alert-danger alert-dismissible fade show' role='alert'><strong>Escribi algo gil.</strong><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>"
+
+            } else {
+                resultInvalid.innerHTML = "";
+                var cantidadAgua = (cantidadSolucion * (graduacionInicial - graduacionFinal)) / graduacionFinal;
+
+                resultadoDiv.innerHTML = "Se necesitan " + Math.round(cantidadAgua) + " mililitros de agua para diluir " + cantidadSolucion + " mililitros de solución del " + graduacionInicial + "% al " + graduacionFinal + "%";
+            }
+
+        }
+    </script>
+
+</body>
+
+</html>
