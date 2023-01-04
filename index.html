@@ -20,57 +20,87 @@
     <style>
         body {
             margin-top: 2rem;
-            margin-left: 2rem;
+            font-size: x-large;
         }
 
         .resultado {
             font-size: larger;
             font-weight: 500;
         }
+
+        button{
+            font-size: 20px;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+        }
+
+        button, input {
+            margin: 0;
+            font-family: inherit;
+            font-size: 30px;
+            line-height: inherit;
+        }
+        @media screen and (max-width: 500px) {
+            form {
+                width: 100%;
+                font-size: 3rem;
+            }
+        }
     </style>
 </head>
 
 <body>
+    <div class="container-fluid">
+        <div class="row flex-xl-nowrap">
 
-    <div class="d-flex justify-content-center">
-        <h1>Calculadora de dilución de alcohol</h1>
+            <main class="col-12">
+
+                <div class="d-flex w-100">
+                    <h1>Calculadora de dilución de alcohol</h1>
+                </div>
+                <div class="d-flex mt-2">
+                    <h3 class="ml-2">AN = VA * (GA – GAD) / GAD</h3>
+                </div>
+
+                <div class="d-flex mt-3">
+                    <ol class="w-100">
+
+                        <li><strong>AN</strong>&nbsp;&nbsp;&nbsp; = Cantidad de agua necesaria (en litros)</li>
+                        <li><strong>VA</strong>&nbsp;&nbsp;&nbsp; = Volumen de alcohol disponible (en litros)</li>
+                        <li><strong>GA</strong>&nbsp;&nbsp;&nbsp; = Graduación alcohólica del volumen de alcohol
+                            disponible
+                            (en %)
+                        </li>
+                        <li><strong>GAD</strong> = Graduación alcohólica deseada (en %)</li>
+                    </ol>
+                </div>
+                <div class="d-flex mt-5">
+                    <form class="w-100">
+                        <div class="form-group">
+                            <label for="cantidad-solucion" class="w-100">Cantidad de solución (en mililitros):</label><br>
+                            <input type="number" id="cantidad-solucion" name="cantidad-solucion" class="w-100"><br>
+                        </div>
+                        <div class="form-group">
+                            <label for="graduacion-inicial" class="w-100">Graduación inicial (%):</label><br>
+                            <input type="number" id="graduacion-inicial" name="graduacion-inicial" class="w-100"><br>
+                        </div>
+                        <div class="form-group">
+                            <label for="graduacion-final" class="w-100">Graduación final (%):</label><br>
+                            <input type="number" id="graduacion-final" name="graduacion-final" class="w-100"><br>
+                        </div>
+                        <button class="btn btn-primary p-3" type="button" onclick="calcular()">Calcular</button>
+                    </form>
+                </div>
+                <br>
+                <div class="d-flex ">
+                    <div id="resultado" class="resultado"></div>
+                </div>
+                <div id="result-invalid" class="d-flex justify-content-center" style="margin-left:-50px;"></div>
+            </main>
+        </div>
     </div>
-    <div class="d-flex justify-content-center">
-        <h3 class="ml-2">AN = VA * (GA – GAD) / GAD</h3>
-    </div>
-
-    <form class="d-flex justify-content-center">
-        <ol>
-
-            <li><strong>AN</strong>&nbsp;&nbsp;&nbsp; = Cantidad de agua necesaria (en litros)</li>
-            <li><strong>VA</strong>&nbsp;&nbsp;&nbsp; = Volumen de alcohol disponible (en litros)</li>
-            <li><strong>GA</strong>&nbsp;&nbsp;&nbsp; = Graduación alcohólica del volumen de alcohol disponible (en %)
-            </li>
-            <li><strong>GAD</strong> = Graduación alcohólica deseada (en %)</li>
-        </ol>
-    </form>
-
-    <div class="form d-flex justify-content-center">
-        <form>
-            <label for="cantidad-solucion">Cantidad de solución (en mililitros):</label><br>
-            <input type="number" id="cantidad-solucion" name="cantidad-solucion"><br>
-            <br>
-            <label for="graduacion-inicial">Graduación inicial (%):</label><br>
-            <input type="number" id="graduacion-inicial" name="graduacion-inicial"><br>
-            <br>
-            <label for="graduacion-final">Graduación final (%):</label><br>
-            <input type="number" id="graduacion-final" name="graduacion-final"><br>
-            <br>
-            <button class="btn btn-primary ml-lg-5" type="button" onclick="calcular()">Calcular</button>
-        </form>
-    </div>
-    <br> 
-    <div class="d-flex justify-content-center" >
-        <div id="resultado" class="resultado"></div>
-    </div>
-    <div id="result-invalid" class="d-flex justify-content-center " style="margin-left:-50px;"></div>
-
-
 
 
     <script>
